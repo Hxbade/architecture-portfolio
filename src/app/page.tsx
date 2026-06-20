@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div>
-      <section className="mx-auto grid max-w-6xl items-end gap-8 px-5 pt-14 pb-16 sm:px-6 sm:pt-20 lg:grid-cols-2 lg:gap-10">
+      <section className="mx-auto grid max-w-6xl items-center gap-8 px-5 pt-14 pb-16 sm:px-6 sm:pt-20 lg:grid-cols-2 lg:gap-10">
         <Reveal>
           <p className="text-sm uppercase tracking-widest text-neutral-500">
             {studio.tagline}
