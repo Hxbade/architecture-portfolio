@@ -1,81 +1,262 @@
+export const studio = {
+  name: "Hong'Nakii Bade",
+  role: "Graduate Project Architect",
+  tagline: "Architecture · Design · Art",
+  location: "Port Moresby, Papua New Guinea",
+  email: "hongnakii.bade@gmail.com",
+  // Philosophy line carried through from the printed portfolio.
+  creed: "I design with God, purpose, conviction.",
+};
+
+export const profile = {
+  intro: [
+    "I am Hong'Nakii Bade, a Graduate Project Architect based in Port Moresby, Papua New Guinea. My work explores the relationship between contemporary design and local context — climate, culture and community.",
+    "This portfolio brings together selected projects, studies and sketches from my academic and professional practice.",
+  ],
+  philosophy: [
+    "With experience spanning commercial, institutional, and community-focused environments, I have contributed to projects across multiple organizations and sectors throughout Papua New Guinea. My work covers the full arc of architectural practice — from early design strategy and spatial planning through to documentation, compliance, and delivery.",
+    "My design philosophy is grounded in restraint and precision. I believe the strongest spaces are purposeful, user-centred, and built to last. Whether working within large financial institutions or contributing to smaller, community-scale projects, I bring the same discipline to every brief.",
+  ],
+  experience: [
+    { period: "2024 — Present", role: "Project Architect" },
+    { period: "2022 — 2024", role: "Architectural Graduate" },
+  ],
+  software: [
+    "AutoCAD",
+    "Revit",
+    "SketchUp",
+    "Rhino",
+    "Adobe Photoshop",
+    "Adobe InDesign",
+    "Lumion / Enscape",
+  ],
+  designSkills: [
+    "Concept development",
+    "Spatial planning",
+    "Technical documentation",
+    "Visualisation",
+    "Hand drawing",
+  ],
+};
+
 export type Project = {
   slug: string;
   title: string;
   category: string;
   location: string;
   year: string;
+  client: string;
+  role: string;
   summary: string;
   description: string[];
   facts: { label: string; value: string }[];
+  // Web-optimised images under /public/projects/<slug>/. First is the cover.
+  // When omitted, a generated ProjectVisual is shown instead.
+  images?: string[];
+  // Portrait image sets render as a grid of tall tiles instead of a wide hero.
+  imagesPortrait?: boolean;
+  // Supplies the homepage hero image (cover only).
+  homeHero?: boolean;
+  // Keep this project off the homepage "Selected projects" grid (still on /projects).
+  hideFromHome?: boolean;
 };
 
 export const projects: Project[] = [
   {
-    slug: "meridian-house",
-    title: "Meridian House",
-    category: "Residential",
-    location: "Auckland, NZ",
-    year: "2024",
-    summary: "A single-storey courtyard house organised around light and a sequence of garden rooms.",
-    description: [
-      "Meridian House reorganises a tight urban site around a central courtyard, allowing every habitable room to receive direct daylight.",
-      "Material palette is restrained — in-situ concrete, spotted gum joinery, and a standing-seam roof — to keep focus on spatial sequence rather than ornament.",
-    ],
-    facts: [
-      { label: "Type", value: "New build" },
-      { label: "Area", value: "210 m²" },
-      { label: "Status", value: "Completed" },
-    ],
-  },
-  {
-    slug: "harbour-lookout",
-    title: "Harbour Lookout",
-    category: "Civic",
-    location: "Wellington, NZ",
-    year: "2023",
-    summary: "A timber viewing pavilion cantilevered over the headland, commissioned by the local council.",
-    description: [
-      "The pavilion is conceived as a single gesture — a folded timber roof plane lifting toward the harbour view.",
-      "Structure is exposed throughout, with glue-laminated portal frames left visible as the primary architectural language.",
-    ],
-    facts: [
-      { label: "Type", value: "Public pavilion" },
-      { label: "Area", value: "85 m²" },
-      { label: "Status", value: "Completed" },
-    ],
-  },
-  {
-    slug: "kiln-street-studio",
-    title: "Kiln Street Studio",
-    category: "Adaptive Reuse",
-    location: "Christchurch, NZ",
+    slug: "puma-service-station-lae",
+    title: "PUMA Service Station, Lae",
+    category: "Commercial / Service Station Refurbishment",
+    location: "Coronation Drive, Lae, Morobe Province, PNG",
     year: "2022",
-    summary: "Conversion of a former pottery workshop into a live/work studio for two practising artists.",
+    client: "PUMA Energy PNG Limited",
+    role: "Project Architect",
+    summary:
+      "A refurbishment of PUMA Energy's service station on Coronation Drive, Lae — modernising the forecourt retail offer with a new convenience store and café.",
     description: [
-      "The existing brick shell was retained and reinforced, with a new mezzanine inserted to create a discrete living level above the working studio.",
-      "Original kiln chimneys remain as found objects within the new plan, anchoring the building's history within its new use.",
+      "The project refurbishes an existing PUMA Energy service station, renewing the convenience retail and café offer that sits behind the fuel forecourt.",
+      "The retail floor is reorganised for clear sightlines and easy circulation, with PUMA's red-and-black brand identity carried through the shelving, café counter, and chilled displays.",
+      "Work spanned concept design and approvals documentation through to coordination of the building's mechanical, electrical and hydraulic services for the refurbishment.",
     ],
     facts: [
-      { label: "Type", value: "Adaptive reuse" },
-      { label: "Area", value: "160 m²" },
-      { label: "Status", value: "Completed" },
+      { label: "Client", value: "PUMA Energy PNG Limited" },
+      { label: "Type", value: "Service station refurbishment" },
+      { label: "Role", value: "Project Architect" },
+      { label: "Year", value: "2022" },
+    ],
+    images: [
+      "/projects/puma-service-station-lae/01.jpg",
+      "/projects/puma-service-station-lae/02.jpg",
+      "/projects/puma-service-station-lae/03.jpg",
+      "/projects/puma-service-station-lae/04.jpg",
     ],
   },
   {
-    slug: "ridge-line-residence",
-    title: "Ridge Line Residence",
-    category: "Residential",
-    location: "Queenstown, NZ",
-    year: "2025",
-    summary: "A low, linear house tracing the contour of a steep alpine ridge, currently under construction.",
+    slug: "nmag-hangar-raaf",
+    title: "NMAG Aviation Heritage Gallery",
+    category: "Cultural / Aviation Heritage",
+    location: "Port Moresby, Papua New Guinea",
+    year: "2022",
+    client: "The National Museum & Art Gallery",
+    role: "Project Architect",
+    summary:
+      "A hangar-scaled gallery for The National Museum & Art Gallery, housing Papua New Guinea's aviation heritage — including Royal Australian Air Force aircraft from the nation's modern history.",
     description: [
-      "The house is split into three pavilions connected by glazed links, stepping down the site to minimise excavation.",
-      "Deep eaves and a dark, low-maintenance envelope respond to the alpine climate while keeping the building visually quiet on the ridge.",
+      "The Aviation Heritage Gallery is a new Modern History wing of The National Museum & Art Gallery (NMAG), dedicated to Papua New Guinea's aviation story. The hangar-scaled volume is sized to house and display full heritage aircraft, including Royal Australian Air Force aircraft tied to the country's wartime and post-war history.",
+      "A perforated metal screen wraps the facade, filtering the tropical light and giving the building a civic, ceremonial presence. A reflecting pool and landscaped forecourt draw visitors past a mounted heritage aircraft toward the main hangar doors.",
+      "Work spanned concept design and massing through to the documentation of the screen facade, large-span hangar structure, and visitor approach.",
     ],
     facts: [
-      { label: "Type", value: "New build" },
-      { label: "Area", value: "340 m²" },
-      { label: "Status", value: "Under construction" },
+      { label: "Client", value: "National Museum & Art Gallery" },
+      { label: "Collection", value: "RAAF heritage aircraft" },
+      { label: "Role", value: "Project Architect" },
+      { label: "Year", value: "2022" },
+    ],
+    images: [
+      "/projects/nmag-hangar-raaf/01.jpg",
+      "/projects/nmag-hangar-raaf/02.jpg",
+      "/projects/nmag-hangar-raaf/03.jpg",
+      "/projects/nmag-hangar-raaf/04.jpg",
+      "/projects/nmag-hangar-raaf/05.jpg",
+    ],
+  },
+  {
+    slug: "nambawan-super-fitout",
+    title: "Nambawan Super — Moki Flagship Branch",
+    category: "Commercial / Branch Fit-out",
+    location: "Wewak, Papua New Guinea",
+    year: "2025",
+    client: "Nambawan Super Limited",
+    role: "Project Architect",
+    summary:
+      "A new flagship member-service branch for Nambawan Super Limited (NSL), Papua New Guinea's largest superannuation fund — interiors that pair the NSL brand with bold Papua New Guinean patterning.",
+    description: [
+      "The Moki Flagship Branch is a new member-service centre for Nambawan Super Limited (NSL). The fit-out organises service counters, customer support, waiting lounges and a back-of-house call centre into a single, clearly wayfound floor.",
+      "The interior pairs NSL's brand identity with bold Papua New Guinean patterning on feature walls, warm timber-slat ceilings, and comfortable lounge settings — giving the branch a welcoming, distinctly local character while supporting efficient day-to-day operations.",
+      "Scope covered the full interior fit-out: space planning, joinery and service counters, finishes, and visualisation.",
+    ],
+    facts: [
+      { label: "Client", value: "Nambawan Super Limited" },
+      { label: "Type", value: "Flagship branch fit-out" },
+      { label: "Role", value: "Project Architect" },
+      { label: "Year", value: "2025" },
+    ],
+    images: [
+      "/projects/nambawan-super-fitout/01.jpg",
+      "/projects/nambawan-super-fitout/02.jpg",
+      "/projects/nambawan-super-fitout/03.jpg",
+      "/projects/nambawan-super-fitout/04.jpg",
+      "/projects/nambawan-super-fitout/05.jpg",
+      "/projects/nambawan-super-fitout/06.jpg",
+    ],
+  },
+  {
+    slug: "bsp-card-centre",
+    title: "BSP Card Centre",
+    category: "Commercial / Banking Fit-out",
+    location: "Papua New Guinea",
+    year: "2026",
+    client: "Bank South Pacific (BSP)",
+    role: "Project Architect",
+    summary:
+      "An interior design for Bank South Pacific's member Card Centre — a welcoming, clearly wayfound space for members to replace or collect their bank cards.",
+    description: [
+      "The BSP Card Centre reimagines the member experience for collecting and replacing bank cards. The plan leads members from a branded welcome wall through to service counters, a comfortable waiting area, and private consultation rooms.",
+      "BSP's green brand identity is carried consistently across feature walls, signage, joinery and the upholstered BSP Gold member lounge, while clear wayfinding and generous seating keep the space calm and easy to navigate.",
+      "The fit-out is conceived as a repeatable standard — from welcome wall and service counters through to the member lounge — that can roll out across branch locations.",
+    ],
+    facts: [
+      { label: "Client", value: "Bank South Pacific (BSP)" },
+      { label: "Type", value: "Member card centre fit-out" },
+      { label: "Role", value: "Project Architect" },
+      { label: "Year", value: "2026" },
+    ],
+    images: [
+      "/projects/bsp-card-centre/01.jpg",
+      "/projects/bsp-card-centre/02.jpg",
+      "/projects/bsp-card-centre/03.jpg",
+      "/projects/bsp-card-centre/04.jpg",
+    ],
+  },
+  {
+    slug: "kundu-tower",
+    title: "Kundu Tower",
+    category: "Landmark Tower / Concept",
+    location: "Port Moresby, Papua New Guinea",
+    year: "2026",
+    client: "Self-initiated concept",
+    role: "Designer",
+    summary:
+      "A concept for a landmark tower in Port Moresby, its hourglass silhouette drawn directly from the kundu — the traditional Papua New Guinean drum.",
+    description: [
+      "Kundu Tower reimagines Papua New Guinea's most recognisable instrument as architecture. Stacked, gently rotating floor plates taper to a slender waist before flaring again, tracing the kundu drum's hourglass profile.",
+      "Continuous balcony terraces wrap each level, opening onto panoramic views of the harbour and city while shading the glazed facade beneath.",
+      "The proposal positions the tower as a civic icon on the Port Moresby skyline, anchoring its waterfront setting.",
+    ],
+    facts: [
+      { label: "Type", value: "Landmark tower" },
+      { label: "Status", value: "Concept design" },
+      { label: "Inspiration", value: "Kundu drum form" },
+      { label: "Year", value: "2026" },
+    ],
+    images: [
+      "/projects/kundu-tower/cover.jpg",
+      "/projects/kundu-tower/02.jpg",
+      "/projects/kundu-tower/03.jpg",
+    ],
+    imagesPortrait: true,
+    homeHero: true,
+    hideFromHome: true,
+  },
+  {
+    slug: "united-church",
+    title: "United Church",
+    category: "Notable Work / Community",
+    location: "Papua New Guinea",
+    year: "2023",
+    client: "United Church",
+    role: "Designer",
+    summary:
+      "A design proposal for a United Church congregation, centred on gathering, light and community.",
+    description: [
+      "A community worship space organised around gathering and natural light, responding to its congregation and local context.",
+    ],
+    facts: [
+      { label: "Client", value: "United Church" },
+      { label: "Role", value: "Designer" },
+      { label: "Year", value: "2023" },
+    ],
+    images: [
+      "/projects/united-church/01.jpg",
+      "/projects/united-church/02.jpg",
+      "/projects/united-church/03.jpg",
+      "/projects/united-church/04.jpg",
+    ],
+  },
+  {
+    slug: "js-coffee-cafe",
+    title: "JS Coffee Café",
+    category: "Hospitality / Café",
+    location: "Papua New Guinea",
+    year: "2024",
+    client: "JS Coffee Café",
+    role: "Designer",
+    summary:
+      "An open-air café concept for JS Coffee Café, serving PNG-blended coffee from a relaxed timber pavilion.",
+    description: [
+      "JS Coffee Café is conceived as a relaxed, open-air pavilion serving locally PNG-blended coffee. A pitched roof shelters a covered dining deck, with timber-batten screens filtering light and air while opening the café to its garden courtyard.",
+      "Brick, warm timber and soft evening lighting give the café an inviting, distinctly local character, anchored by the JS Coffee Café service counter and branding.",
+    ],
+    facts: [
+      { label: "Client", value: "JS Coffee Café" },
+      { label: "Type", value: "Café concept" },
+      { label: "Role", value: "Designer" },
+      { label: "Year", value: "2024" },
+    ],
+    images: [
+      "/projects/js-coffee-cafe/01.jpg",
+      "/projects/js-coffee-cafe/02.jpg",
+      "/projects/js-coffee-cafe/03.jpg",
+      "/projects/js-coffee-cafe/04.jpg",
     ],
   },
 ];

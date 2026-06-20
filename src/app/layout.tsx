@@ -15,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Studio Name — Architecture Portfolio",
-  description: "Selected architectural work by Studio Name.",
+  title: "Hong'Nakii Bade — Architecture Portfolio",
+  description:
+    "Architecture, design and art by Hong'Nakii Bade, Graduate Project Architect, Port Moresby, Papua New Guinea.",
 };
 
 export default function RootLayout({

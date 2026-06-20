@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   basePath: isGithubPages ? `/${repoName}` : "",
   assetPrefix: isGithubPages ? `/${repoName}/` : "",
+  // Static export can't run the image optimizer, so serve images as-is.
+  images: { unoptimized: true },
   turbopack: {
     root: path.resolve(__dirname),
   },

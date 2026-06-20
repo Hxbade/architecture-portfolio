@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { studio } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Contact — Studio Name",
+  title: "Contact — Atelier North",
 };
 
 export default function ContactPage() {
@@ -17,29 +18,22 @@ export default function ContactPage() {
           <div>
             <dt className="text-neutral-500 uppercase tracking-widest text-xs">Email</dt>
             <dd className="mt-1">
-              <a href="mailto:studio@example.com" className="font-medium hover:underline">
-                studio@example.com
+              <a href={`mailto:${studio.email}`} className="font-medium hover:underline">
+                {studio.email}
               </a>
             </dd>
           </div>
           <div>
-            <dt className="text-neutral-500 uppercase tracking-widest text-xs">Phone</dt>
-            <dd className="mt-1 font-medium">+64 9 000 0000</dd>
+            <dt className="text-neutral-500 uppercase tracking-widest text-xs">Based in</dt>
+            <dd className="mt-1 font-medium">{studio.location}</dd>
           </div>
           <div>
-            <dt className="text-neutral-500 uppercase tracking-widest text-xs">Studio</dt>
-            <dd className="mt-1 font-medium">123 Example Street, Auckland 1010, NZ</dd>
-          </div>
-          <div>
-            <dt className="text-neutral-500 uppercase tracking-widest text-xs">Social</dt>
-            <dd className="mt-1 space-x-4">
-              <a href="#" className="font-medium hover:underline">Instagram</a>
-              <a href="#" className="font-medium hover:underline">LinkedIn</a>
-            </dd>
+            <dt className="text-neutral-500 uppercase tracking-widest text-xs">Focus</dt>
+            <dd className="mt-1 font-medium">{studio.tagline}</dd>
           </div>
         </dl>
 
-        <form action="mailto:studio@example.com" method="post" encType="text/plain" className="space-y-4">
+        <form action={`mailto:${studio.email}`} method="post" encType="text/plain" className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-xs uppercase tracking-widest text-neutral-500">
               Name

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import { ProjectGallery } from "@/components/ProjectMedia";
 import { projects } from "@/data/projects";
 import type { Metadata } from "next";
 
@@ -43,9 +43,8 @@ export default async function ProjectPage({
         </p>
       </div>
 
-      <div className="mt-10 grid sm:grid-cols-2 gap-6">
-        <ImagePlaceholder label={`${project.title} — main view`} aspect="aspect-[4/3]" />
-        <ImagePlaceholder label={`${project.title} — detail`} aspect="aspect-[4/3]" />
+      <div className="mt-10">
+        <ProjectGallery project={project} />
       </div>
 
       <div className="mt-12 grid sm:grid-cols-3 gap-10">

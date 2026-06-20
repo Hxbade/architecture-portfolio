@@ -1,10 +1,10 @@
 import Link from "next/link";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import { ProjectCover } from "@/components/ProjectMedia";
 import { projects } from "@/data/projects";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Projects — Studio Name",
+  title: "Projects — Hong'Nakii Bade",
 };
 
 export default function ProjectsPage() {
@@ -12,13 +12,14 @@ export default function ProjectsPage() {
     <div className="mx-auto max-w-6xl px-6 py-16">
       <h1 className="text-3xl font-medium tracking-tight">Projects</h1>
       <p className="mt-3 max-w-xl text-neutral-600">
-        A selection of residential, civic, and adaptive reuse work.
+        Selected commercial, institutional, and community projects across Papua
+        New Guinea, alongside notable studies and concepts.
       </p>
 
       <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.map((project) => (
           <Link key={project.slug} href={`/projects/${project.slug}`} className="group">
-            <ImagePlaceholder label={project.title} />
+            <ProjectCover project={project} />
             <p className="mt-3 text-sm font-medium group-hover:underline">
               {project.title}
             </p>
