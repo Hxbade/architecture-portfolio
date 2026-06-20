@@ -1,6 +1,6 @@
 import Image from "next/image";
 import ProjectVisual from "@/components/ProjectVisual";
-import type { Project } from "@/data/projects";
+import { assetPath, type Project } from "@/data/projects";
 
 // Card cover: real photo when the project has images, otherwise the
 // generated architectural visual so every card stays populated.
@@ -20,7 +20,7 @@ export function ProjectCover({
   return (
     <div className={`relative ${aspect} ${className} overflow-hidden bg-neutral-100`}>
       <Image
-        src={cover}
+        src={assetPath(cover)}
         alt={project.title}
         fill
         sizes="(max-width: 640px) 100vw, 33vw"
@@ -54,7 +54,7 @@ export function ProjectGallery({ project }: { project: Project }) {
             className="relative aspect-[4/5] overflow-hidden bg-neutral-100"
           >
             <Image
-              src={src}
+              src={assetPath(src)}
               alt={`${project.title} — view ${i + 1}`}
               fill
               sizes="(max-width: 640px) 100vw, 33vw"
@@ -72,7 +72,7 @@ export function ProjectGallery({ project }: { project: Project }) {
     <div className="space-y-6">
       <div className="relative aspect-[16/9] overflow-hidden bg-neutral-100">
         <Image
-          src={hero}
+          src={assetPath(hero)}
           alt={`${project.title} — view 1`}
           fill
           sizes="(max-width: 1024px) 100vw, 1024px"
@@ -88,7 +88,7 @@ export function ProjectGallery({ project }: { project: Project }) {
               className="relative aspect-[4/3] overflow-hidden bg-neutral-100"
             >
               <Image
-                src={src}
+                src={assetPath(src)}
                 alt={`${project.title} — view ${i + 2}`}
                 fill
                 sizes="(max-width: 640px) 100vw, 33vw"

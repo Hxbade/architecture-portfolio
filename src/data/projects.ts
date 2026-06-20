@@ -1,3 +1,11 @@
+// Prefix a public-folder path with the deployment base path. Required because
+// next/image with `unoptimized` does NOT prepend basePath to image src, so on
+// GitHub Pages (served under /architecture-portfolio) raw "/foo.jpg" would 404.
+export function assetPath(src: string): string {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  return src.startsWith("/") ? `${base}${src}` : src;
+}
+
 export const studio = {
   name: "Hong'Nakii Bade",
   role: "Graduate Project Architect",

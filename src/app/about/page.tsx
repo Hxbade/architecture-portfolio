@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { studio, profile } from "@/data/projects";
+import { studio, profile, assetPath } from "@/data/projects";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export default function AboutPage() {
         <div className="sm:col-span-1">
           <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100">
             <Image
-              src="/profile.jpg"
+              src={assetPath("/profile.jpg")}
               alt={`Portrait of ${studio.name}`}
               fill
               sizes="(max-width: 640px) 100vw, 33vw"
