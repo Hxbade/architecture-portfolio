@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode: `dark:` applies when <html> has .dark */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #fafaf9;
   --foreground: #1c1917;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #0c0a09;
+  --foreground: #e7e5e4;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -25,17 +35,12 @@ body {
 }
 
 ::selection {
-  background: #1c1917;
-  color: #fafaf9;
-}
-
-a,
-button {
-  outline-color: #1c1917;
+  background: var(--foreground);
+  color: var(--background);
 }
 
 :focus-visible {
-  outline: 2px solid #1c1917;
+  outline: 2px solid var(--foreground);
   outline-offset: 2px;
 }
 

@@ -7,14 +7,17 @@ export const metadata: Metadata = {
 };
 
 const fieldClass =
-  "mt-1 w-full border border-neutral-300 bg-transparent px-3 py-2 text-sm transition-colors focus:border-neutral-950 focus:outline-none";
+  "mt-1 w-full border border-neutral-300 bg-transparent px-3 py-2 text-sm transition-colors focus:border-neutral-950 focus:outline-none dark:border-neutral-700 dark:focus:border-neutral-100";
+
+const labelClass =
+  "block text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400";
 
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-16">
       <Reveal>
         <h1 className="text-3xl font-medium tracking-tight">Contact</h1>
-        <p className="mt-3 max-w-xl text-neutral-600">
+        <p className="mt-3 max-w-xl text-neutral-600 dark:text-neutral-400">
           For project enquiries, collaborations, or press, get in touch.
         </p>
       </Reveal>
@@ -23,28 +26,22 @@ export default function ContactPage() {
         <Reveal>
           <dl className="space-y-6 text-sm">
             <div>
-              <dt className="text-xs uppercase tracking-widest text-neutral-500">
-                Email
-              </dt>
+              <dt className={labelClass}>Email</dt>
               <dd className="mt-1">
                 <a
                   href={`mailto:${studio.email}`}
-                  className="font-medium transition-colors hover:text-neutral-500"
+                  className="font-medium transition-colors hover:text-neutral-500 dark:hover:text-neutral-400"
                 >
                   {studio.email}
                 </a>
               </dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-widest text-neutral-500">
-                Based in
-              </dt>
+              <dt className={labelClass}>Based in</dt>
               <dd className="mt-1 font-medium">{studio.location}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-widest text-neutral-500">
-                Focus
-              </dt>
+              <dt className={labelClass}>Focus</dt>
               <dd className="mt-1 font-medium">{studio.tagline}</dd>
             </div>
           </dl>
@@ -58,19 +55,13 @@ export default function ContactPage() {
             className="space-y-4"
           >
             <div>
-              <label
-                htmlFor="name"
-                className="block text-xs uppercase tracking-widest text-neutral-500"
-              >
+              <label htmlFor="name" className={labelClass}>
                 Name
               </label>
               <input id="name" name="name" type="text" required className={fieldClass} />
             </div>
             <div>
-              <label
-                htmlFor="email"
-                className="block text-xs uppercase tracking-widest text-neutral-500"
-              >
+              <label htmlFor="email" className={labelClass}>
                 Email
               </label>
               <input
@@ -82,10 +73,7 @@ export default function ContactPage() {
               />
             </div>
             <div>
-              <label
-                htmlFor="message"
-                className="block text-xs uppercase tracking-widest text-neutral-500"
-              >
+              <label htmlFor="message" className={labelClass}>
                 Message
               </label>
               <textarea
@@ -98,7 +86,7 @@ export default function ContactPage() {
             </div>
             <button
               type="submit"
-              className="bg-neutral-950 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-700"
+              className="bg-neutral-950 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-700 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-300"
             >
               Send message
             </button>

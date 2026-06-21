@@ -37,7 +37,7 @@ export default async function ProjectPage({
     <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-16">
       <Link
         href="/projects"
-        className="group inline-flex items-center gap-1 text-sm text-neutral-500 transition-colors hover:text-neutral-950"
+        className="group inline-flex items-center gap-1 text-sm text-neutral-500 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
       >
         <span className="transition-transform duration-300 group-hover:-translate-x-1">
           ←
@@ -49,7 +49,7 @@ export default async function ProjectPage({
         <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
           {project.title}
         </h1>
-        <p className="text-sm text-neutral-500">
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">
           {project.location} — {project.year}
         </p>
       </div>
@@ -59,7 +59,7 @@ export default async function ProjectPage({
       </Reveal>
 
       <Reveal className="mt-12 grid gap-8 sm:grid-cols-3 sm:gap-10">
-        <div className="space-y-4 text-neutral-700 sm:col-span-2">
+        <div className="space-y-4 text-neutral-700 sm:col-span-2 dark:text-neutral-300">
           {project.description.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}
@@ -68,9 +68,9 @@ export default async function ProjectPage({
           {project.facts.map((fact) => (
             <div
               key={fact.label}
-              className="flex justify-between gap-4 border-b border-neutral-200 pb-2"
+              className="flex justify-between gap-4 border-b border-neutral-200 pb-2 dark:border-neutral-800"
             >
-              <dt className="text-neutral-500">{fact.label}</dt>
+              <dt className="text-neutral-500 dark:text-neutral-400">{fact.label}</dt>
               <dd className="text-right font-medium">{fact.value}</dd>
             </div>
           ))}

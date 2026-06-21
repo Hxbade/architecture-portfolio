@@ -13,7 +13,7 @@ export default function ProjectsPage() {
     <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-16">
       <Reveal>
         <h1 className="text-3xl font-medium tracking-tight">Projects</h1>
-        <p className="mt-3 max-w-xl text-neutral-600">
+        <p className="mt-3 max-w-xl text-neutral-600 dark:text-neutral-400">
           Selected commercial, institutional, and community projects across
           Papua New Guinea, alongside notable studies and concepts.
         </p>
@@ -24,10 +24,10 @@ export default function ProjectsPage() {
           <Reveal key={project.slug} delay={(i % 3) * 90}>
             <Link href={`/projects/${project.slug}`} className="group block">
               <ProjectCover project={project} />
-              <p className="mt-3 text-sm font-medium transition-colors group-hover:text-neutral-500">
+              <p className="mt-3 text-sm font-medium transition-colors group-hover:text-neutral-500 dark:group-hover:text-neutral-400">
                 {project.title}
               </p>
-              <p className="text-sm text-neutral-500">
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">
                 {project.category} — {project.location} — {project.year}
               </p>
             </Link>

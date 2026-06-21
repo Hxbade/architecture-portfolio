@@ -18,7 +18,7 @@ export function ProjectCover({
     return <ProjectVisual seed={project.slug} aspect={aspect} className={className} />;
   }
   return (
-    <div className={`relative ${aspect} ${className} overflow-hidden bg-neutral-100`}>
+    <div className={`relative ${aspect} ${className} overflow-hidden bg-neutral-100 dark:bg-neutral-900`}>
       <Image
         src={assetPath(cover)}
         alt={project.title}
@@ -51,7 +51,7 @@ export function ProjectGallery({ project }: { project: Project }) {
         {images.map((src, i) => (
           <div
             key={src}
-            className="relative aspect-[4/5] overflow-hidden bg-neutral-100"
+            className="relative aspect-[4/5] overflow-hidden bg-neutral-100 dark:bg-neutral-900"
           >
             <Image
               src={assetPath(src)}
@@ -70,7 +70,7 @@ export function ProjectGallery({ project }: { project: Project }) {
   const [hero, ...rest] = images;
   return (
     <div className="space-y-6">
-      <div className="relative aspect-[16/9] overflow-hidden bg-neutral-100">
+      <div className="relative aspect-[16/9] overflow-hidden bg-neutral-100 dark:bg-neutral-900">
         <Image
           src={assetPath(hero)}
           alt={`${project.title} — view 1`}
@@ -85,7 +85,7 @@ export function ProjectGallery({ project }: { project: Project }) {
           {rest.map((src, i) => (
             <div
               key={src}
-              className="relative aspect-[4/3] overflow-hidden bg-neutral-100"
+              className="relative aspect-[4/3] overflow-hidden bg-neutral-100 dark:bg-neutral-900"
             >
               <Image
                 src={assetPath(src)}
