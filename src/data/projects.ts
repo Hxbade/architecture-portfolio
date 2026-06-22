@@ -8,7 +8,7 @@ export function assetPath(src: string): string {
 
 export const studio = {
   name: "Hong'Nakii Bade",
-  role: "Graduate Project Architect",
+  role: "Project Architect",
   tagline: "Architecture · Design · Art",
   location: "Port Moresby, Papua New Guinea",
   email: "hongnakii.bade@gmail.com",
@@ -18,7 +18,7 @@ export const studio = {
 
 export const profile = {
   intro: [
-    "I am Hong'Nakii Bade, a Graduate Project Architect based in Port Moresby, Papua New Guinea. My work explores the relationship between contemporary design and local context — climate, culture and community.",
+    "I am Hong'Nakii Bade, a Project Architect with 5+ years of experience based in Port Moresby, Papua New Guinea. My work explores the relationship between contemporary design and local context — climate, culture and community.",
     "This portfolio brings together selected projects, studies and sketches from my academic and professional practice.",
   ],
   philosophy: [
@@ -26,8 +26,10 @@ export const profile = {
     "My design philosophy is grounded in restraint and precision. I believe the strongest spaces are purposeful, user-centred, and built to last. Whether working within large financial institutions or contributing to smaller, community-scale projects, I bring the same discipline to every brief.",
   ],
   experience: [
-    { period: "2024 — Present", role: "Project Architect" },
-    { period: "2022 — 2024", role: "Architectural Graduate" },
+    { period: "2025 — Present", role: "BIM Executive, PAC Architects" },
+    { period: "2022 — 2025", role: "Senior Graduate Architect, Planpac Group" },
+    { period: "2021 — 2022", role: "Graduate Architect, Niugini 21 / Glory Group" },
+    { period: "2019 — 2020", role: "Intern Architect, Frameworks Architect" },
   ],
   software: [
     "AutoCAD",

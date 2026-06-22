@@ -1,23 +1,91 @@
-// Professional experience derived from the PNGIA practical-training logbook
-// (Jun 2022 – Feb 2026), employer PAC Architects (Planpac Group), Port Moresby.
+// Professional experience from the 2025 CV plus the PNGIA practical-training
+// logbook (Jun 2022 – Feb 2026). Employers: Frameworks Architect (Goroka),
+// Niugini 21 (now Allied Architect), Glory Group, Planpac Group / PAC Architects.
 
 export const experience = {
-  position: {
-    role: "Graduate Architect",
-    employer: "PAC Architects (Planpac Group)",
+  headline: {
+    title: "BIM Executive · Project Architect",
+    firm: "PAC Architects (Planpac Group)",
     location: "Port Moresby, Papua New Guinea",
-    period: "June 2022 — Present",
-    mentor: "Rai Mou",
+    span: "2019 — Present",
   },
   intro: [
-    "Since 2022 I have been logging practical training toward registration with the Papua New Guinea Institute of Architects (PNGIA), working across the full arc of practice — from pre-design and concept through documentation, statutory consents, tender and contract administration.",
-    "The timeline below is drawn from my PNGIA logbook: projects spanning commercial fit-outs, banking, retail, cultural, institutional and residential work, supervised by registered architects and mentored by Rai Mou.",
+    "I am a Project Architect with 5+ years of technical and managerial experience across architecture, design and construction in Papua New Guinea — progressing from intern and graduate roles into design leadership and, since 2025, a BIM Executive role at PAC Architects.",
+    "Below is my employment history followed by a timeline of selected project involvement, including practical experience logged toward registration with the PNG Institute of Architects (PNGIA).",
   ],
   stats: [
-    { value: "3+ yrs", label: "Practical training" },
-    { value: "25+", label: "Projects logged" },
+    { value: "5+ yrs", label: "Experience" },
+    { value: "25+", label: "Projects" },
     { value: "9", label: "Sectors" },
     { value: "7", label: "Work stages" },
+  ],
+  education: {
+    period: "2016 — 2020",
+    qualification: "Bachelor of Architecture",
+    institution: "PNG University of Technology (Unitech)",
+  },
+  // Employment history (most recent first).
+  positions: [
+    {
+      role: "BIM Executive",
+      firm: "PAC Architects Limited",
+      location: "Port Moresby",
+      period: "Jan 2025 — Present",
+      points: [
+        "BIM management and CAD design across AutoCAD, ArchiCAD and Revit.",
+        "City-authority planning and lodgment of drawings.",
+        "Client and consultant coordination on building planning and development.",
+        "Concept and detailed design development.",
+      ],
+    },
+    {
+      role: "Senior Graduate Architect",
+      firm: "Planpac Group Limited",
+      location: "Port Moresby",
+      period: "Jun 2022 — Jan 2025",
+      points: [
+        "Led a team of graduates and draftspersons.",
+        "Designed and drafted building plans from concept through to construction drawings.",
+        "Developed statutory-approval drawings for city planning and building boards.",
+        "Set programmes and design strategies; sourced materials, quotes and sub-consultant contracts.",
+        "Prepared client reports and design assessments against NZ/AS standards and NCC compliance.",
+      ],
+    },
+    {
+      role: "Graduate Architect",
+      firm: "Glory Group Ltd",
+      location: "Port Moresby",
+      period: "Jan 2022 — Jun 2022",
+      points: [
+        "CAD design and drafting (AutoCAD, ArchiCAD, Revit).",
+        "City-authority planning and lodgment of drawings.",
+        "Concept and detailed design development.",
+      ],
+    },
+    {
+      role: "Graduate Architect",
+      firm: "Niugini 21 Ltd (now Allied Architect)",
+      location: "Port Moresby",
+      period: "Jan 2021 — Jan 2022",
+      note: "Under Willie Mueng",
+      points: [
+        "CAD drafting and design using Revit and Lumion.",
+        "City-authority planning and lodgment of drawings.",
+        "Site measure, design development and as-built plans.",
+        "Managed small-scale maintenance and design projects — including the 7 Mile Clinic (statutory lodgment, drafting, design and contract administration).",
+      ],
+    },
+    {
+      role: "Intern Architect",
+      firm: "Frameworks Architect Ltd",
+      location: "Goroka, Eastern Highlands",
+      period: "Dec 2019 — Jan 2020",
+      points: [
+        "Site investigation, reporting and site measure.",
+        "Concept development, 3D modelling and visualisation — including University of Goroka (UOG) refurbishment works.",
+        "CAD drafting and detailed design.",
+      ],
+    },
   ],
   // RIBA-style work stages evidenced across the logbook.
   stages: [
@@ -210,6 +278,24 @@ export const experience = {
           type: "Community",
           period: "Nov 2022",
           role: "Design support for a community project in Popondetta.",
+        },
+      ],
+    },
+    {
+      year: "2019 — 2021",
+      heading: "Early career — Frameworks & Niugini 21",
+      items: [
+        {
+          title: "7 Mile Clinic",
+          type: "Healthcare",
+          period: "2021 · Niugini 21 Ltd",
+          role: "Statutory lodgment, drafting, design and contract-administration work for a community clinic, under Willie Mueng.",
+        },
+        {
+          title: "University of Goroka — Refurbishment Works",
+          type: "Education / Refurbishment",
+          period: "2019 — 2020 · Frameworks Architect",
+          role: "Concept development and site measure for refurbishment works at the University of Goroka.",
         },
       ],
     },
