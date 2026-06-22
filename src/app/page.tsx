@@ -55,10 +55,8 @@ export default function Home() {
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-neutral-500 dark:text-neutral-400">
             {studio.name} — Portfolio
           </p>
-          <h1 className="mt-5 text-[2.75rem] font-medium leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-            Architecture
-            <br />
-            Portfolio
+          <h1 className="mt-4 max-w-2xl text-[2rem] font-medium leading-[1.1] tracking-tight sm:text-5xl">
+            Architecture is the deliberate shaping of experience.
           </h1>
           <p className="mt-5 text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
             {studio.tagline}
