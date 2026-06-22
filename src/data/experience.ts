@@ -4,13 +4,13 @@
 
 export const experience = {
   headline: {
-    title: "BIM Executive · Project Architect",
-    firm: "PAC Architects (Planpac Group)",
+    title: "Project Architect",
+    firm: "Bank South Pacific (BSP)",
     location: "Port Moresby, Papua New Guinea",
     span: "2019 — Present",
   },
   intro: [
-    "I am a Project Architect with 5+ years of technical and managerial experience across architecture, design and construction in Papua New Guinea — progressing from intern and graduate roles into design leadership and, since 2025, a BIM Executive role at PAC Architects.",
+    "I am a Project Architect with 5+ years of technical and managerial experience across architecture, design and construction in Papua New Guinea — progressing from intern and graduate roles into design leadership and, since April 2026, an in-house Project Architect role with Bank South Pacific (BSP).",
     "Below is my employment history followed by a timeline of selected project involvement, including practical experience logged toward registration with the PNG Institute of Architects (PNGIA).",
   ],
   stats: [
@@ -27,10 +27,21 @@ export const experience = {
   // Employment history (most recent first).
   positions: [
     {
+      role: "Project Architect",
+      firm: "Bank South Pacific (BSP)",
+      location: "Port Moresby",
+      period: "Apr 2026 — Present",
+      points: [
+        "In-house architect for BSP branch designs across the retail network.",
+        "Member card-centre designs.",
+        "Coordination between consultants and contractors through design and delivery.",
+      ],
+    },
+    {
       role: "BIM Executive",
       firm: "PAC Architects Limited",
       location: "Port Moresby",
-      period: "Jan 2025 — Present",
+      period: "Jan 2025 — Apr 2026",
       points: [
         "BIM management and CAD design across AutoCAD, ArchiCAD and Revit.",
         "City-authority planning and lodgment of drawings.",
@@ -98,6 +109,31 @@ export const experience = {
     "Handover & maintenance",
   ],
   timeline: [
+    {
+      year: "2026",
+      heading: "In-house architect — Bank South Pacific",
+      items: [
+        {
+          title: "BSP — Branch Designs",
+          type: "Banking / Retail",
+          period: "2026 · BSP",
+          role: "Branch design and rollout across Bank South Pacific's retail network.",
+        },
+        {
+          title: "BSP — Card Centres",
+          type: "Banking",
+          period: "2026 · BSP",
+          role: "Member card-centre interior designs — a welcoming, clearly wayfound space for members.",
+          slug: "bsp-card-centre",
+        },
+        {
+          title: "BSP — Consultant & Contractor Coordination",
+          type: "Coordination / Delivery",
+          period: "2026 · BSP",
+          role: "Coordination between consultants and contractors through design and on-site delivery.",
+        },
+      ],
+    },
     {
       year: "2025 — 2026",
       heading: "Leading the NSL branch fit-out programme — full project lifecycle",

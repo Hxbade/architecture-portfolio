@@ -16,6 +16,25 @@ export const studio = {
   creed: "I design with God, purpose, conviction.",
 };
 
+// Homepage hero + featured concept (Kundu Tower) renders, with hover labels.
+export const home = {
+  hero: {
+    image: "/projects/kundu-tower/cover.jpg",
+    label: "Kundu Tower — Port Moresby (concept)",
+    href: "/projects/kundu-tower",
+  },
+  feature: {
+    slug: "kundu-tower",
+    title: "Kundu Tower",
+    subtitle: "A landmark concept — the kundu drum, drawn as a tower.",
+    images: [
+      { src: "/projects/kundu-tower/r1.jpg", label: "Tower & forecourt at dusk" },
+      { src: "/projects/kundu-tower/r4.jpg", label: "Grand lobby" },
+      { src: "/projects/kundu-tower/r2.jpg", label: "Sky restaurant" },
+    ],
+  },
+};
+
 export const profile = {
   intro: [
     "I am Hong'Nakii Bade, a Project Architect with 5+ years of experience based in Port Moresby, Papua New Guinea. My work explores the relationship between contemporary design and local context — climate, culture and community.",
@@ -26,7 +45,8 @@ export const profile = {
     "My design philosophy is grounded in restraint and precision. I believe the strongest spaces are purposeful, user-centred, and built to last. Whether working within large financial institutions or contributing to smaller, community-scale projects, I bring the same discipline to every brief.",
   ],
   experience: [
-    { period: "2025 — Present", role: "BIM Executive, PAC Architects" },
+    { period: "2026 — Present", role: "Project Architect, Bank South Pacific" },
+    { period: "2025 — 2026", role: "BIM Executive, PAC Architects" },
     { period: "2022 — 2025", role: "Senior Graduate Architect, Planpac Group" },
     { period: "2021 — 2022", role: "Graduate Architect, Niugini 21 / Glory Group" },
     { period: "2019 — 2020", role: "Intern Architect, Frameworks Architect" },
@@ -199,22 +219,23 @@ export const projects: Project[] = [
       "A concept for a landmark tower in Port Moresby, its hourglass silhouette drawn directly from the kundu — the traditional Papua New Guinean drum.",
     description: [
       "Kundu Tower reimagines Papua New Guinea's most recognisable instrument as architecture. Stacked, gently rotating floor plates taper to a slender waist before flaring again, tracing the kundu drum's hourglass profile.",
-      "Continuous balcony terraces wrap each level, opening onto panoramic views of the harbour and city while shading the glazed facade beneath.",
+      "Inside, a flared timber column anchors a grand lobby, with a sky restaurant and wrap-around terraces opening onto panoramic views of the harbour and city while shading the glazed facade beneath.",
       "The proposal positions the tower as a civic icon on the Port Moresby skyline, anchoring its waterfront setting.",
     ],
     facts: [
-      { label: "Type", value: "Landmark tower" },
+      { label: "Type", value: "Mixed-use landmark tower" },
       { label: "Status", value: "Concept design" },
       { label: "Inspiration", value: "Kundu drum form" },
       { label: "Year", value: "2026" },
     ],
     images: [
+      "/projects/kundu-tower/r1.jpg",
+      "/projects/kundu-tower/r4.jpg",
+      "/projects/kundu-tower/r2.jpg",
+      "/projects/kundu-tower/r3.jpg",
       "/projects/kundu-tower/cover.jpg",
-      "/projects/kundu-tower/02.jpg",
-      "/projects/kundu-tower/03.jpg",
+      "/projects/kundu-tower/scheme.jpg",
     ],
-    imagesPortrait: true,
-    homeHero: true,
     hideFromHome: true,
   },
   {
