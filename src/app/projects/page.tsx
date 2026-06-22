@@ -23,7 +23,7 @@ export default function ProjectsPage() {
         {projects.map((project, i) => (
           <Reveal key={project.slug} delay={(i % 3) * 90}>
             <Link href={`/projects/${project.slug}`} className="group block">
-              <ProjectCover project={project} />
+              <ProjectCover project={project} interactive />
               <p className="mt-3 text-sm font-medium transition-colors group-hover:text-neutral-500 dark:group-hover:text-neutral-400">
                 {project.title}
               </p>

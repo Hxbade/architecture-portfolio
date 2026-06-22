@@ -33,6 +33,10 @@ export default async function ProjectPage({
     notFound();
   }
 
+  const idx = projects.findIndex((p) => p.slug === project.slug);
+  const prevProject = projects[(idx - 1 + projects.length) % projects.length];
+  const nextProject = projects[(idx + 1) % projects.length];
+
   return (
     <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-16">
       <Link
@@ -75,6 +79,28 @@ export default async function ProjectPage({
             </div>
           ))}
         </dl>
+      </Reveal>
+
+      <Reveal className="mt-16 grid grid-cols-2 gap-4 border-t border-neutral-200 pt-8 dark:border-neutral-800">
+        <Link href={`/projects/${prevProject.slug}`} className="group">
+          <p className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+            ← Previous
+          </p>
+          <p className="mt-1 text-sm font-medium transition-colors group-hover:text-neutral-500 dark:group-hover:text-neutral-400">
+            {prevProject.title}
+          </p>
+        </Link>
+        <Link
+          href={`/projects/${nextProject.slug}`}
+          className="group text-right"
+        >
+          <p className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+            Next →
+          </p>
+          <p className="mt-1 text-sm font-medium transition-colors group-hover:text-neutral-500 dark:group-hover:text-neutral-400">
+            {nextProject.title}
+          </p>
+        </Link>
       </Reveal>
     </div>
   );
