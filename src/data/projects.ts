@@ -54,11 +54,15 @@ export const profile = {
   software: [
     "AutoCAD",
     "Revit",
+    "ArchiCAD",
     "SketchUp",
     "Rhino",
+    "Blender",
+    "D5 Render",
+    "Twinmotion",
+    "Lumion / Enscape",
     "Adobe Photoshop",
     "Adobe InDesign",
-    "Lumion / Enscape",
   ],
   designSkills: [
     "Concept development",
