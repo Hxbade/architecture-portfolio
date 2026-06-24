@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { experience } from "@/data/experience";
+import { logbookByTitle } from "@/data/logbook";
+import { assetPath } from "@/data/projects";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -166,6 +168,33 @@ export default function ExperiencePage() {
                       <p className="mt-2 max-w-2xl text-sm text-neutral-600 dark:text-neutral-400">
                         {item.role}
                       </p>
+                      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+                        {"exhibitSlug" in item && item.exhibitSlug ? (
+                          <Link
+                            href={`/flipbook/${item.exhibitSlug}`}
+                            className="group inline-flex items-center gap-1 text-xs uppercase tracking-widest text-neutral-500 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
+                          >
+                            View exhibit
+                            <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5">
+                              ↗
+                            </span>
+                          </Link>
+                        ) : null}
+                        {logbookByTitle[item.title] ? (
+                          <a
+                            href={assetPath(
+                              `/logbook/${logbookByTitle[item.title].id}.pdf`,
+                            )}
+                            download
+                            className="group inline-flex items-center gap-1 text-xs uppercase tracking-widest text-neutral-500 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
+                          >
+                            <span className="inline-block transition-transform duration-300 group-hover:translate-y-0.5">
+                              ↓
+                            </span>
+                            Logbook · {logbookByTitle[item.title].hours} hrs
+                          </a>
+                        ) : null}
+                      </div>
                     </li>
                   ))}
                 </ol>
