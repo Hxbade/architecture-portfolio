@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Flipbook source drawing sets (PDFs) — only generated page images in public/ are served
+/flipbook-sources/
+
+# Local Claude tooling
+/.claude/

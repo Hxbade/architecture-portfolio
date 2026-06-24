@@ -93,11 +93,15 @@ export type Project = {
   homeHero?: boolean;
   // Keep this project off the homepage "Selected projects" grid (still on /projects).
   hideFromHome?: boolean;
+  // Slug of a drawing-set exhibit (src/data/exhibits.ts) shown as a flipbook
+  // at the top of the project page.
+  exhibitSlug?: string;
 };
 
 export const projects: Project[] = [
   {
     slug: "puma-service-station-lae",
+    exhibitSlug: "puma-service-station",
     title: "PUMA Service Station, Lae",
     category: "Commercial / Service Station Refurbishment",
     location: "Coronation Drive, Lae, Morobe Province, PNG",
@@ -155,6 +159,7 @@ export const projects: Project[] = [
   },
   {
     slug: "nambawan-super-fitout",
+    exhibitSlug: "nsl-moki",
     title: "Nambawan Super — Moki Flagship Branch",
     category: "Commercial / Branch Fit-out",
     location: "Wewak, Papua New Guinea",
@@ -185,6 +190,7 @@ export const projects: Project[] = [
   },
   {
     slug: "bsp-card-centre",
+    exhibitSlug: "bsp-card-centre",
     title: "BSP Card Centre",
     category: "Commercial / Banking Fit-out",
     location: "Papua New Guinea",
@@ -244,6 +250,7 @@ export const projects: Project[] = [
   },
   {
     slug: "united-church",
+    exhibitSlug: "united-church-exhibit",
     title: "United Church",
     category: "Notable Work / Community",
     location: "Papua New Guinea",
@@ -269,6 +276,7 @@ export const projects: Project[] = [
   },
   {
     slug: "js-coffee-cafe",
+    exhibitSlug: "js-coffee-sky-view",
     title: "JS Coffee Café",
     category: "Hospitality / Café",
     location: "Papua New Guinea",

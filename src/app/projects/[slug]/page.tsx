@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProjectGallery } from "@/components/ProjectMedia";
+import Flipbook from "@/components/Flipbook";
 import Reveal from "@/components/Reveal";
-import { projects } from "@/data/projects";
+import { projects, assetPath } from "@/data/projects";
+import { getExhibit } from "@/data/exhibits";
 import type { Metadata } from "next";
 
 export function generateStaticParams() {
@@ -37,6 +39,15 @@ export default async function ProjectPage({
   const prevProject = projects[(idx - 1 + projects.length) % projects.length];
   const nextProject = projects[(idx + 1) % projects.length];
 
+  const exhibit = project.exhibitSlug ? getExhibit(project.exhibitSlug) : undefined;
+  const exhibitPages = exhibit
+    ? Array.from({ length: exhibit.pages }, (_, i) =>
+        assetPath(
+          `/flipbook/${exhibit.slug}/page-${String(i + 1).padStart(3, "0")}.jpg`,
+        ),
+      )
+    : [];
+
   return (
     <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-16">
       <Link
@@ -58,9 +69,38 @@ export default async function ProjectPage({
         </p>
       </div>
 
-      <Reveal className="mt-8 sm:mt-10">
-        <ProjectGallery project={project} />
-      </Reveal>
+      {exhibit ? (
+        <>
+          <Reveal className="mt-8 sm:mt-10">
+            <div className="mb-4 flex items-baseline justify-between gap-4">
+              <h2 className="text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+                Flipbook — drawing set
+              </h2>
+              <Link
+                href={`/flipbook/${exhibit.slug}`}
+                className="group inline-flex items-center gap-1 text-xs uppercase tracking-widest text-neutral-500 transition-colors hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
+              >
+                Open full exhibit
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5">
+                  ↗
+                </span>
+              </Link>
+            </div>
+            <Flipbook pages={exhibitPages} alt={`${project.title} drawing set`} />
+          </Reveal>
+
+          <Reveal className="mt-12">
+            <h2 className="mb-4 text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+              Rendered images
+            </h2>
+            <ProjectGallery project={project} gridOnly />
+          </Reveal>
+        </>
+      ) : (
+        <Reveal className="mt-8 sm:mt-10">
+          <ProjectGallery project={project} />
+        </Reveal>
+      )}
 
       <Reveal className="mt-12 grid gap-8 sm:grid-cols-3 sm:gap-10">
         <div className="space-y-4 text-neutral-700 sm:col-span-2 dark:text-neutral-300">

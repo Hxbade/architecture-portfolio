@@ -125,6 +125,7 @@ export const experience = {
           period: "2026 · BSP",
           role: "Member card-centre interior designs — a welcoming, clearly wayfound space for members.",
           slug: "bsp-card-centre",
+          exhibitSlug: "bsp-card-centre",
         },
         {
           title: "BSP — Consultant & Contractor Coordination",
@@ -156,6 +157,7 @@ export const experience = {
           type: "Commercial Fit-out",
           period: "May 2025 — Feb 2026",
           role: "Ran a tenancy fit-out end-to-end: space planning, documentation and consent lodgment through tender, contract administration and final close-out.",
+          exhibitSlug: "nsl-moki",
         },
         {
           title: "NSL — Goroka Branch Fit-out",
@@ -204,6 +206,7 @@ export const experience = {
           type: "Retail / Fuel",
           period: "Feb — May 2023",
           role: "Concept and drawings for a service-station project in Alotau.",
+          exhibitSlug: "puma-service-station",
         },
         {
           title: "SANTOS — Iagifu Ridge Camp Building Upgrades",
@@ -271,6 +274,7 @@ export const experience = {
           period: "Jul — Aug 2022",
           role: "Concept development and drawings for the refurbishment of the Coronation Drive service station in Lae.",
           slug: "puma-service-station-lae",
+          exhibitSlug: "puma-service-station",
         },
         {
           title: "NMAG — Aircraft Heritage Hangar",
@@ -284,6 +288,7 @@ export const experience = {
           type: "Public / Civic",
           period: "Oct 2022 — Jan 2023",
           role: "Concept design and drawings for a new main market in Lae.",
+          exhibitSlug: "lae-market-police-base",
         },
         {
           title: "UNOPS — Kada Gunan Fit-out",
@@ -308,6 +313,7 @@ export const experience = {
           type: "Institutional / Government",
           period: "Sep 2022",
           role: "Design drawings for a police training-college classroom facility.",
+          exhibitSlug: "afp-cadet-accommodation",
         },
         {
           title: "LDS — Popondetta",

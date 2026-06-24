@@ -51,7 +51,13 @@ export function ProjectCover({
 
 // Detail-page gallery: interactive lightbox gallery when images exist,
 // else the generated visuals.
-export function ProjectGallery({ project }: { project: Project }) {
+export function ProjectGallery({
+  project,
+  gridOnly = false,
+}: {
+  project: Project;
+  gridOnly?: boolean;
+}) {
   const images = project.images ?? [];
 
   if (images.length === 0) {
@@ -68,6 +74,7 @@ export function ProjectGallery({ project }: { project: Project }) {
       images={images}
       title={project.title}
       portrait={!!project.imagesPortrait}
+      gridOnly={gridOnly}
     />
   );
 }

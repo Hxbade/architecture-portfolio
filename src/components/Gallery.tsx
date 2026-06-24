@@ -8,6 +8,7 @@ type GalleryProps = {
   images: string[];
   title: string;
   portrait?: boolean;
+  gridOnly?: boolean;
 };
 
 function ExpandCue() {
@@ -20,7 +21,7 @@ function ExpandCue() {
   );
 }
 
-export default function Gallery({ images, title, portrait = false }: GalleryProps) {
+export default function Gallery({ images, title, portrait = false, gridOnly = false }: GalleryProps) {
   const [index, setIndex] = useState<number | null>(null);
   const open = index !== null;
   const touchX = useRef<number | null>(null);
@@ -73,7 +74,11 @@ export default function Gallery({ images, title, portrait = false }: GalleryProp
 
   return (
     <>
-      {portrait ? (
+      {gridOnly ? (
+        <div className="grid gap-6 sm:grid-cols-3">
+          {images.map((src, i) => tile(src, i, "aspect-[4/3]", i === 0))}
+        </div>
+      ) : portrait ? (
         <div className="grid gap-6 sm:grid-cols-3">
           {images.map((src, i) => tile(src, i, "aspect-[4/5]", i === 0))}
         </div>
