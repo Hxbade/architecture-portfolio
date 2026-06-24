@@ -14,6 +14,9 @@ export type FlipbookOptions = {
   /** Page size in px (per single page). */
   width?: number;
   height?: number;
+  /** Single-page aspect ratio (width / height). Defaults to A3 landscape (√2)
+   *  and is auto-detected from the first page image at runtime. */
+  aspect?: number;
   /** Flip duration in ms. */
   duration?: number;
   /** CSS easing for the turn. */
@@ -32,9 +35,11 @@ export type FlipbookOptions = {
   startPage?: number;
 };
 
-const DEFAULTS: Required<Omit<FlipbookOptions, "pages" | "downloadUrl">> = {
-  width: 391,
+const DEFAULTS = {
+  // Base page height in px; page width is derived as height * aspect.
   height: 553,
+  // A3 landscape (√2 ≈ 1.414). Auto-detected from the first page image.
+  aspect: 1600 / 1131,
   duration: 700,
   easing: "cubic-bezier(0.4, 0.2, 0.2, 1)",
   perspective: 1500,
@@ -42,6 +47,7 @@ const DEFAULTS: Required<Omit<FlipbookOptions, "pages" | "downloadUrl">> = {
   sound: true,
   breakpoint: 720,
   startPage: 0,
+  downloadUrl: null as string | null,
 };
 
 const STYLE_ID = "flipbook-styles";
@@ -65,11 +71,11 @@ function injectStyles() {
 .fb-scale{transform-origin:center center}
 .fb-viewport{position:relative}
 .fb-book{position:absolute;inset:0;transform-style:preserve-3d}
-.fb-page,.fb-leaf{position:absolute;top:0;height:100%;background:#fff;background-size:cover;background-position:center;background-repeat:no-repeat}
+.fb-page,.fb-leaf{position:absolute;top:0;height:100%;background:#fff;background-size:contain;background-position:center;background-repeat:no-repeat}
 .fb-page{box-shadow:0 0 20px 0 rgba(0,0,0,var(--fb-shadow))}
 .fb-spine{position:absolute;top:0;bottom:0;width:46px;pointer-events:none;z-index:6;background:linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(0,0,0,calc(var(--fb-shadow)*0.55)) 48%,rgba(0,0,0,calc(var(--fb-shadow)*0.55)) 52%,rgba(0,0,0,0) 100%)}
 .fb-leaf{transform-style:preserve-3d;z-index:10;will-change:transform;backface-visibility:visible}
-.fb-face{position:absolute;inset:0;backface-visibility:hidden;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#fff;box-shadow:0 0 20px 0 rgba(0,0,0,calc(var(--fb-shadow)*0.8))}
+.fb-face{position:absolute;inset:0;backface-visibility:hidden;background-size:contain;background-position:center;background-repeat:no-repeat;background-color:#fff;box-shadow:0 0 20px 0 rgba(0,0,0,calc(var(--fb-shadow)*0.8))}
 .fb-face.fb-back{transform:rotateY(180deg)}
 .fb-shine{position:absolute;inset:0;pointer-events:none;opacity:0}
 .fb-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:30;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:rgba(255,255,255,0.78);color:#1c1917;cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,0.15);transition:opacity .2s,background .2s;backdrop-filter:blur(4px)}
@@ -90,10 +96,10 @@ function injectStyles() {
 
 export class Flipbook {
   private container: HTMLElement;
-  private opts: Required<Omit<FlipbookOptions, "downloadUrl">> & {
-    downloadUrl: string | null;
-  };
+  private opts: typeof DEFAULTS;
   private pages: string[];
+  private pageW = 0; // derived single-page width (height * aspect)
+  private destroyed = false;
 
   // DOM
   private stage!: HTMLDivElement;
@@ -131,14 +137,16 @@ export class Flipbook {
   constructor(container: HTMLElement, options: FlipbookOptions) {
     injectStyles();
     this.container = container;
-    this.opts = { ...DEFAULTS, downloadUrl: null, ...options } as Required<
-      Omit<FlipbookOptions, "downloadUrl">
-    > & { downloadUrl: string | null };
+    this.opts = { ...DEFAULTS, ...options } as typeof DEFAULTS;
+    // An explicit width override implies an aspect ratio.
+    if (options.width) this.opts.aspect = options.width / this.opts.height;
     this.pages = options.pages || [];
     this.page = Math.max(0, Math.min(this.opts.startPage, this.pages.length - 1));
+    this.computePageW();
     this.build();
     this.layout();
     this.render();
+    this.detectAspect();
 
     this.ro = new ResizeObserver(() => this.layout());
     this.ro.observe(this.container);
@@ -236,6 +244,31 @@ export class Flipbook {
     return b;
   }
 
+  // ---- sizing ----
+  private computePageW() {
+    // Single page is landscape: width = height * aspect (A3 √2 by default).
+    this.pageW = Math.max(1, Math.round(this.opts.height * this.opts.aspect));
+  }
+
+  // Refine the aspect ratio from the actual page image so the frame matches the
+  // sheet exactly (no stretching/cropping).
+  private detectAspect() {
+    const probe = this.pages[this.opts.startPage] || this.pages[0];
+    if (!probe || typeof Image === "undefined") return;
+    const img = new Image();
+    img.onload = () => {
+      if (this.destroyed || !img.naturalWidth || !img.naturalHeight) return;
+      const a = img.naturalWidth / img.naturalHeight;
+      if (Math.abs(a - this.opts.aspect) > 0.01) {
+        this.opts.aspect = a;
+        this.computePageW();
+        this.layout();
+        this.render();
+      }
+    };
+    img.src = probe;
+  }
+
   // ---- layout / responsive ----
   private layout() {
     const o = this.opts;
@@ -245,7 +278,8 @@ export class Flipbook {
       this.cols = cols;
       if (cols === 2) this.page = this.page - (this.page % 2); // snap to spread
     }
-    const bookW = this.cols * o.width;
+    // Spread width = cols × (single landscape page); 2 pages ≈ 2.828 : 1.
+    const bookW = this.cols * this.pageW;
     const bookH = o.height;
     this.viewport.style.width = `${bookW}px`;
     this.viewport.style.height = `${bookH}px`;
@@ -256,7 +290,7 @@ export class Flipbook {
     this.scale.style.height = `${bookH}px`;
     this.stage.style.height = `${bookH * s + 8}px`;
     this.spine.style.display = this.cols === 2 ? "block" : "none";
-    this.spine.style.left = `${o.width - 23}px`;
+    this.spine.style.left = `${this.pageW - 23}px`;
     if (!this.animating) this.render();
   }
 
@@ -265,7 +299,7 @@ export class Flipbook {
   }
 
   private placeStatics() {
-    const w = this.opts.width;
+    const w = this.pageW;
     if (this.cols === 2) {
       Object.assign(this.leftEl.style, { left: "0", width: `${w}px`, display: "block" });
       Object.assign(this.rightEl.style, { left: `${w}px`, width: `${w}px`, display: "block" });
@@ -311,7 +345,7 @@ export class Flipbook {
 
   // ---- build a turning leaf ----
   private makeLeaf(dir: 1 | -1) {
-    const w = this.opts.width;
+    const w = this.pageW;
     const leaf = document.createElement("div");
     leaf.className = "fb-leaf";
     leaf.style.width = `${w}px`;
@@ -547,6 +581,7 @@ export class Flipbook {
   }
 
   destroy() {
+    this.destroyed = true;
     document.removeEventListener("keydown", this.onKey);
     this.ro?.disconnect();
     this.container.innerHTML = "";
