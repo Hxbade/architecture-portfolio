@@ -68,8 +68,12 @@ function injectStyles() {
   el.textContent = `
 .fb-stage{position:relative;width:100%;display:flex;align-items:center;justify-content:center;background:#fcfcfc;border-radius:4px;overflow:hidden;touch-action:pan-y}
 .fb-stage:fullscreen{background:#fcfcfc}
-.fb-stage.fb-zoom{position:fixed;inset:0;z-index:9999;height:auto!important;max-width:none;border-radius:0;background:rgba(0,0,0,0.9);cursor:zoom-out}
-.fb-stage.fb-zoom .fb-scale{cursor:default}
+.fb-stage.fb-zoom{position:fixed;inset:0;z-index:9999;height:auto!important;max-width:none;border-radius:0;background:rgba(0,0,0,0.9);overflow:auto;cursor:zoom-out;-webkit-overflow-scrolling:touch}
+.fb-stage.fb-zoom .fb-scale{margin:auto;cursor:default}
+.fb-stage.fb-zoom .fb-toolbar{position:fixed;top:14px;right:14px}
+.fb-stage.fb-zoom .fb-arrow.prev{position:fixed;left:14px}
+.fb-stage.fb-zoom .fb-arrow.next{position:fixed;right:14px}
+.fb-stage.fb-zoom .fb-count{position:fixed;left:50%;bottom:14px}
 .dark .fb-stage.fb-zoom{background:rgba(0,0,0,0.92)}
 .fb-scale{transform-origin:center center}
 .fb-viewport{position:relative}
@@ -300,17 +304,13 @@ export class Flipbook {
 
     let s: number;
     if (this.zoomed) {
-      // ~1.5× the inline fit, capped so the spread stays fully visible.
-      const inlineFit = Math.min(
-        1,
-        (inlineW - 36) / bookW,
-        (window.innerHeight * 0.85) / bookH,
-      );
+      // Fit the spread to the viewport at the largest fully-visible size
+      // (never upscaling past 1:1).
       const viewFit = Math.min(
         (window.innerWidth - 48) / bookW,
-        (window.innerHeight - 64) / bookH,
+        (window.innerHeight - 72) / bookH,
       );
-      s = Math.min(viewFit, inlineFit * 1.5);
+      s = Math.min(1, viewFit);
     } else {
       s = Math.min(1, (cw - 36) / bookW, (window.innerHeight * 0.85) / bookH);
     }
