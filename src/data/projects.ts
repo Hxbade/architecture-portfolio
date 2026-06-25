@@ -35,6 +35,44 @@ export const home = {
   },
 };
 
+// Process narrative — three alternating rows on the home page. Copy is original;
+// images are reused from existing projects.
+export const processSteps = [
+  {
+    label: "Concept",
+    title: "Early design strategy",
+    body: "Every project begins with the brief and the site. I translate early strategy — program, climate, culture and context — into a clear spatial idea, testing options quickly so the strongest direction is set before any detail begins.",
+    image: "/projects/nmag-hangar-raaf/01.jpg",
+    caption: "NMAG Aviation Heritage Gallery",
+    href: "/projects/nmag-hangar-raaf",
+  },
+  {
+    label: "Design Development",
+    title: "Resolving form, materials & detail",
+    body: "With the concept fixed, I resolve form, materials and detail. Plans, sections and 3D models develop in parallel with consultants — balancing buildability, budget and brand so the design holds together at every scale.",
+    image: "/projects/nambawan-super-fitout/02.jpg",
+    caption: "Nambawan Super — Moki Flagship Branch",
+    href: "/projects/nambawan-super-fitout",
+  },
+  {
+    label: "Documentation & Delivery",
+    title: "Coordination, documentation & handover",
+    body: "I produce the statutory and construction documentation that gets a building approved and built — coordinating consultants and contractors, lodging approvals, and carrying projects through inspections, certification and handover.",
+    image: "/projects/puma-service-station-lae/01.jpg",
+    caption: "PUMA Service Station, Lae",
+    href: "/projects/puma-service-station-lae",
+  },
+];
+
+// Contact links shown in the closing band.
+export const contactLinks = {
+  email: studio.email,
+  // TODO: add your LinkedIn profile URL (leave empty to hide the LinkedIn link).
+  linkedinUrl: "",
+  // TODO: add a phone number if you want it shown (leave empty to hide).
+  phone: "",
+};
+
 export const profile = {
   intro: [
     "I am Hong'Nakii Bade, a Project Architect with 5+ years of experience based in Port Moresby, Papua New Guinea. My work explores the relationship between contemporary design and local context — climate, culture and community.",

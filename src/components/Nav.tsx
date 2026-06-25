@@ -2,33 +2,61 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { studio } from "@/data/projects";
 import ThemeToggle from "@/components/ThemeToggle";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
-  { href: "/about", label: "About" },
-  { href: "/flipbook", label: "Flipbook" },
-  { href: "/contact", label: "Contact" },
+type NavLink = { label: string; route: string; section: string | null };
+
+const links: NavLink[] = [
+  { label: "Home", route: "/", section: "top" },
+  { label: "Projects", route: "/projects", section: "projects" },
+  { label: "Experience", route: "/experience", section: "experience" },
+  { label: "About", route: "/about", section: "about" },
+  { label: "Flipbook", route: "/flipbook", section: null },
+  { label: "Contact", route: "/contact", section: "contact" },
 ];
 
-function isActive(pathname: string, href: string) {
-  if (href === "/") return pathname === "/";
-  return pathname.startsWith(href);
-}
+const SPY_IDS = ["top", "projects", "experience", "about", "contact"];
 
 export default function Nav() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("top");
+
+  // Scroll-spy: highlight the section currently in view on the home page.
+  useEffect(() => {
+    if (!isHome) return;
+    const els = SPY_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => !!el,
+    );
+    if (!els.length) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection(e.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [isHome]);
+
+  const hrefFor = (l: NavLink) =>
+    isHome && l.section ? `#${l.section}` : l.route;
+
+  const isActive = (l: NavLink) => {
+    if (isHome) return l.section ? activeSection === l.section : false;
+    return l.route !== "/" && pathname.startsWith(l.route);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-background/80 backdrop-blur-md dark:border-neutral-800">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6 sm:py-5">
         <Link
-          href="/"
+          href={isHome ? "#top" : "/"}
           onClick={() => setOpen(false)}
           className="text-sm font-medium uppercase tracking-widest"
         >
@@ -39,11 +67,11 @@ export default function Nav() {
           {/* Desktop nav */}
           <nav className="hidden gap-8 text-sm text-neutral-600 sm:flex dark:text-neutral-400">
             {links.map((link) => {
-              const active = isActive(pathname, link.href);
+              const active = isActive(link);
               return (
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  key={link.label}
+                  href={hrefFor(link)}
                   className={`relative py-1 transition-colors hover:text-neutral-950 dark:hover:text-neutral-50 ${
                     active ? "text-neutral-950 dark:text-neutral-50" : ""
                   }`}
@@ -93,16 +121,16 @@ export default function Nav() {
       {/* Mobile menu */}
       <div
         className={`overflow-hidden border-t border-neutral-200 transition-[max-height] duration-300 ease-out sm:hidden dark:border-neutral-800 ${
-          open ? "max-h-64" : "max-h-0"
+          open ? "max-h-72" : "max-h-0"
         }`}
       >
         <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-3">
           {links.map((link) => {
-            const active = isActive(pathname, link.href);
+            const active = isActive(link);
             return (
               <Link
-                key={link.href}
-                href={link.href}
+                key={link.label}
+                href={hrefFor(link)}
                 onClick={() => setOpen(false)}
                 className={`py-2 text-sm transition-colors ${
                   active

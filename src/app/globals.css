@@ -44,6 +44,39 @@ body {
   outline-offset: 2px;
 }
 
+/* ---- Cocoon-style design tokens (theme-aware) ---- */
+
+/* Offset anchor jumps for the sticky nav. */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Small uppercase muted section label. */
+.u-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #78716c;
+}
+.dark .u-eyebrow {
+  color: #a8a29e;
+}
+
+/* Subtle glass-morphism card. */
+.u-glass {
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+.dark .u-glass {
+  background: rgba(23, 20, 18, 0.55);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
