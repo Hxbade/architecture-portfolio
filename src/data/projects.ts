@@ -200,7 +200,7 @@ export const projects: Project[] = [
     exhibitSlug: "nsl-moki",
     title: "Nambawan Super — Moki Flagship Branch",
     category: "Commercial / Branch Fit-out",
-    location: "Wewak, Papua New Guinea",
+    location: "Moki, Port Moresby, Papua New Guinea",
     year: "2025",
     client: "Nambawan Super Limited",
     role: "Project Architect",
