@@ -68,6 +68,9 @@ function injectStyles() {
   el.textContent = `
 .fb-stage{position:relative;width:100%;display:flex;align-items:center;justify-content:center;background:#fcfcfc;border-radius:4px;overflow:hidden;touch-action:pan-y}
 .fb-stage:fullscreen{background:#fcfcfc}
+.fb-stage.fb-zoom{position:fixed;inset:0;z-index:9999;height:auto!important;max-width:none;border-radius:0;background:rgba(0,0,0,0.9);cursor:zoom-out}
+.fb-stage.fb-zoom .fb-scale{cursor:default}
+.dark .fb-stage.fb-zoom{background:rgba(0,0,0,0.92)}
 .fb-scale{transform-origin:center center}
 .fb-viewport{position:relative}
 .fb-book{position:absolute;inset:0;transform-style:preserve-3d}
@@ -100,6 +103,7 @@ export class Flipbook {
   private pages: string[];
   private pageW = 0; // derived single-page width (height * aspect)
   private destroyed = false;
+  private zoomed = false; // centered overlay ("fullscreen") mode
 
   // DOM
   private stage!: HTMLDivElement;
@@ -130,8 +134,12 @@ export class Flipbook {
 
   private ro?: ResizeObserver;
   private onKey = (e: KeyboardEvent) => {
-    if (e.key === "ArrowRight") this.next();
+    if (e.key === "Escape" && this.zoomed) this.setZoom(false);
+    else if (e.key === "ArrowRight") this.next();
     else if (e.key === "ArrowLeft") this.prev();
+  };
+  private onResize = () => {
+    if (this.zoomed) this.layout();
   };
 
   constructor(container: HTMLElement, options: FlipbookOptions) {
@@ -151,6 +159,7 @@ export class Flipbook {
     this.ro = new ResizeObserver(() => this.layout());
     this.ro.observe(this.container);
     document.addEventListener("keydown", this.onKey);
+    window.addEventListener("resize", this.onResize);
   }
 
   // ---- build DOM ----
@@ -215,6 +224,10 @@ export class Flipbook {
 
     // interaction surface
     book.addEventListener("pointerdown", (e) => this.onPointerDown(e));
+    // In zoom mode, clicking the dim backdrop (outside the book) closes it.
+    stage.addEventListener("click", (e) => {
+      if (this.zoomed && !scale.contains(e.target as Node)) this.setZoom(false);
+    });
 
     this.container.append(stage);
     this.stage = stage;
@@ -272,7 +285,8 @@ export class Flipbook {
   // ---- layout / responsive ----
   private layout() {
     const o = this.opts;
-    const cw = this.container.clientWidth || window.innerWidth;
+    const inlineW = this.container.clientWidth || window.innerWidth;
+    const cw = this.zoomed ? window.innerWidth : inlineW;
     const cols = cw < o.breakpoint ? 1 : 2;
     if (cols !== this.cols) {
       this.cols = cols;
@@ -283,12 +297,28 @@ export class Flipbook {
     const bookH = o.height;
     this.viewport.style.width = `${bookW}px`;
     this.viewport.style.height = `${bookH}px`;
-    const maxH = window.innerHeight * 0.85;
-    const s = Math.min(1, (cw - 36) / bookW, maxH / bookH);
+
+    let s: number;
+    if (this.zoomed) {
+      // ~1.5× the inline fit, capped so the spread stays fully visible.
+      const inlineFit = Math.min(
+        1,
+        (inlineW - 36) / bookW,
+        (window.innerHeight * 0.85) / bookH,
+      );
+      const viewFit = Math.min(
+        (window.innerWidth - 48) / bookW,
+        (window.innerHeight - 64) / bookH,
+      );
+      s = Math.min(viewFit, inlineFit * 1.5);
+    } else {
+      s = Math.min(1, (cw - 36) / bookW, (window.innerHeight * 0.85) / bookH);
+    }
+
     this.scale.style.transform = `scale(${s})`;
     this.scale.style.width = `${bookW}px`;
     this.scale.style.height = `${bookH}px`;
-    this.stage.style.height = `${bookH * s + 8}px`;
+    this.stage.style.height = this.zoomed ? "" : `${bookH * s + 8}px`;
     this.spine.style.display = this.cols === 2 ? "block" : "none";
     this.spine.style.left = `${this.pageW - 23}px`;
     if (!this.animating) this.render();
@@ -547,9 +577,20 @@ export class Flipbook {
     this.soundBtn.innerHTML = this.opts.sound ? ICONS.soundOn : ICONS.soundOff;
   }
 
+  // "Fullscreen" = centred zoom overlay (not native fullscreen): dim the page,
+  // centre the book, enlarge it. Click outside / Esc / the button closes it.
   toggleFullscreen() {
-    if (document.fullscreenElement) document.exitFullscreen();
-    else this.stage.requestFullscreen?.();
+    this.setZoom(!this.zoomed);
+  }
+
+  private prevOverflow = "";
+  private setZoom(on: boolean) {
+    if (on === this.zoomed) return;
+    if (on) this.prevOverflow = document.body.style.overflow;
+    this.zoomed = on;
+    this.stage.classList.toggle("fb-zoom", on);
+    document.body.style.overflow = on ? "hidden" : this.prevOverflow;
+    this.layout();
   }
 
   private playSound() {
@@ -582,7 +623,9 @@ export class Flipbook {
 
   destroy() {
     this.destroyed = true;
+    if (this.zoomed) document.body.style.overflow = this.prevOverflow;
     document.removeEventListener("keydown", this.onKey);
+    window.removeEventListener("resize", this.onResize);
     this.ro?.disconnect();
     this.container.innerHTML = "";
   }
