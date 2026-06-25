@@ -589,6 +589,11 @@ export class Flipbook {
     if (on) this.prevOverflow = document.body.style.overflow;
     this.zoomed = on;
     this.stage.classList.toggle("fb-zoom", on);
+    // Move the stage to <body> while zoomed so position:fixed is relative to
+    // the viewport — any transformed ancestor (e.g. a scroll-reveal wrapper)
+    // would otherwise become its containing block and trap the overlay.
+    if (on) document.body.appendChild(this.stage);
+    else this.container.appendChild(this.stage);
     document.body.style.overflow = on ? "hidden" : this.prevOverflow;
     this.layout();
   }
@@ -627,6 +632,7 @@ export class Flipbook {
     document.removeEventListener("keydown", this.onKey);
     window.removeEventListener("resize", this.onResize);
     this.ro?.disconnect();
+    this.stage?.remove(); // may live in <body> while zoomed
     this.container.innerHTML = "";
   }
 }
