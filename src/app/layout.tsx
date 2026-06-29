@@ -38,6 +38,12 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.classList.toggle('dark',d);}catch(e){}})();`,
           }}
         />
+        {/* Cloudflare Web Analytics (privacy-friendly, no cookies). */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "c370c7c222704dde97b6590d13b087b5"}'
+        />
       </head>
       <body className="min-h-full flex flex-col">
         <Nav />
