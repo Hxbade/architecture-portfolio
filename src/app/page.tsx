@@ -5,6 +5,7 @@ import HeroMedia from "@/components/HeroMedia";
 import ProcessSection from "@/components/ProcessSection";
 import HomeTimeline from "@/components/HomeTimeline";
 import ProofCard from "@/components/ProofCard";
+import LinkedInBadge from "@/components/LinkedInBadge";
 import {
   projects,
   studio,
@@ -241,7 +242,6 @@ export default function Home() {
             <a href={`mailto:${contactLinks.email}`} className={PILL_PRIMARY}>
               {contactLinks.email}
             </a>
-            {/* TODO: set contactLinks.linkedinUrl in src/data/projects.ts to show this. */}
             {contactLinks.linkedinUrl ? (
               <a
                 href={contactLinks.linkedinUrl}
@@ -253,7 +253,10 @@ export default function Home() {
               </a>
             ) : null}
           </div>
-          <p className="mt-6 text-sm text-neutral-500 dark:text-neutral-400">
+          <div className="mt-10">
+            <LinkedInBadge />
+          </div>
+          <p className="mt-8 text-sm text-neutral-500 dark:text-neutral-400">
             {studio.location}
           </p>
         </Reveal>

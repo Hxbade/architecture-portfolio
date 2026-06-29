@@ -67,8 +67,7 @@ export const processSteps = [
 // Contact links shown in the closing band.
 export const contactLinks = {
   email: studio.email,
-  // TODO: add your LinkedIn profile URL (leave empty to hide the LinkedIn link).
-  linkedinUrl: "",
+  linkedinUrl: "https://www.linkedin.com/in/hong-nakii-bade-7595a6261",
   // TODO: add a phone number if you want it shown (leave empty to hide).
   phone: "",
 };
