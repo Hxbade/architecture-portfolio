@@ -19,7 +19,8 @@ export default function ExperiencePage() {
     <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-16">
       {/* Header */}
       <Reveal>
-        <h1 className="text-3xl font-medium tracking-tight">Experience</h1>
+        <p className="u-eyebrow">Career</p>
+        <h1 className="mt-4 text-3xl font-medium tracking-tight">Experience</h1>
         <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <p className="text-sm font-medium">{headline.title}</p>
           <span className="text-neutral-300 dark:text-neutral-700">·</span>

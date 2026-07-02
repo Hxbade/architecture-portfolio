@@ -64,7 +64,7 @@ export default function ProjectVisual({
   const sunY = 90 + rng() * 120;
 
   return (
-    <div className={`${aspect} ${className} overflow-hidden bg-neutral-100 dark:bg-neutral-900`}>
+    <div className={`${aspect} ${className} overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900`}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
         preserveAspectRatio="xMidYMid slice"

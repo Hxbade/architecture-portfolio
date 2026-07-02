@@ -33,7 +33,8 @@ export default function AboutPage() {
 
         <div className="sm:col-span-2">
           <Reveal delay={80}>
-            <h1 className="text-3xl font-medium tracking-tight">About</h1>
+            <p className="u-eyebrow">Profile</p>
+            <h1 className="mt-4 text-3xl font-medium tracking-tight">About</h1>
             <div className="mt-6 max-w-xl space-y-4 text-neutral-700 dark:text-neutral-300">
               {profile.intro.map((p, i) => (
                 <p key={`intro-${i}`}>{p}</p>

@@ -14,10 +14,52 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Public URL of the deployed site (used for social-share cards).
+const SITE_URL = "https://hxbade.github.io/architecture-portfolio";
+
 export const metadata: Metadata = {
-  title: "Hong'Nakii Bade — Architecture Portfolio",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Hong'Nakii Bade — Architecture Portfolio",
+    template: "%s",
+  },
   description:
-    "Architecture, design and art by Hong'Nakii Bade, Project Architect, Port Moresby, Papua New Guinea.",
+    "Architecture, design and art by Hong'Nakii Bade — Project Architect in Port Moresby, Papua New Guinea. Selected commercial, institutional and community projects across PNG.",
+  keywords: [
+    "architect",
+    "architecture",
+    "Papua New Guinea",
+    "Port Moresby",
+    "Hong'Nakii Bade",
+    "project architect",
+    "portfolio",
+  ],
+  authors: [{ name: "Hong'Nakii Bade" }],
+  openGraph: {
+    title: "Hong'Nakii Bade — Architecture Portfolio",
+    description:
+      "Project Architect in Port Moresby, Papua New Guinea. Selected commercial, institutional and community projects across PNG.",
+    url: SITE_URL,
+    siteName: "Hong'Nakii Bade — Architecture Portfolio",
+    images: [
+      {
+        url: `${SITE_URL}/og.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Hong'Nakii Bade — Architecture Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hong'Nakii Bade — Architecture Portfolio",
+    description:
+      "Project Architect in Port Moresby, Papua New Guinea.",
+    images: [`${SITE_URL}/og.jpg`],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

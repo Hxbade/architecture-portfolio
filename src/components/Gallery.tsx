@@ -58,7 +58,7 @@ export default function Gallery({ images, title, portrait = false, gridOnly = fa
       type="button"
       onClick={() => setIndex(i)}
       aria-label={`Open image ${i + 1} of ${images.length}`}
-      className={`group relative ${aspect} block w-full cursor-zoom-in overflow-hidden bg-neutral-100 dark:bg-neutral-900`}
+      className={`group relative ${aspect} block w-full cursor-zoom-in overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-900`}
     >
       <Image
         src={assetPath(src)}

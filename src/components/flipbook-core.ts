@@ -66,7 +66,7 @@ function injectStyles() {
   const el = document.createElement("style");
   el.id = STYLE_ID;
   el.textContent = `
-.fb-stage{position:relative;width:100%;display:flex;align-items:center;justify-content:center;background:#fcfcfc;border-radius:4px;overflow:hidden;touch-action:pan-y}
+.fb-stage{position:relative;width:100%;display:flex;align-items:center;justify-content:center;background:#fcfcfc;border-radius:14px;overflow:hidden;touch-action:pan-y}
 .fb-stage:fullscreen{background:#fcfcfc}
 .fb-stage.fb-zoom{position:fixed;inset:0;z-index:9999;height:auto!important;max-width:none;border-radius:0;background:rgba(0,0,0,0.9);overflow:auto;cursor:zoom-out;-webkit-overflow-scrolling:touch}
 .fb-stage.fb-zoom .fb-scale{margin:auto;cursor:default}

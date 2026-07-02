@@ -23,7 +23,7 @@ export function ProjectCover({
     return <ProjectVisual seed={project.slug} aspect={aspect} className={className} />;
   }
   return (
-    <div className={`relative ${aspect} ${className} overflow-hidden bg-neutral-100 dark:bg-neutral-900`}>
+    <div className={`relative ${aspect} ${className} overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900`}>
       <Image
         src={assetPath(cover)}
         alt={project.title}

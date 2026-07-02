@@ -16,7 +16,8 @@ export default function ContactPage() {
   return (
     <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-16">
       <Reveal>
-        <h1 className="text-3xl font-medium tracking-tight">Contact</h1>
+        <p className="u-eyebrow">Get in touch</p>
+        <h1 className="mt-4 text-3xl font-medium tracking-tight">Contact</h1>
         <p className="mt-3 max-w-xl text-neutral-600 dark:text-neutral-400">
           For project enquiries, collaborations, or press, get in touch.
         </p>

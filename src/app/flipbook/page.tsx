@@ -13,7 +13,8 @@ export default function FlipbookPage() {
   return (
     <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-16">
       <Reveal>
-        <h1 className="text-3xl font-medium tracking-tight">
+        <p className="u-eyebrow">Drawing sets</p>
+        <h1 className="mt-4 text-3xl font-medium tracking-tight">
           Logbook Exhibits
         </h1>
         <p className="mt-2 max-w-xl text-sm text-neutral-500 dark:text-neutral-400">
@@ -24,7 +25,7 @@ export default function FlipbookPage() {
 
       <Reveal
         delay={80}
-        className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-neutral-200 bg-neutral-200 sm:grid-cols-3 dark:border-neutral-800 dark:bg-neutral-800"
+        className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-200 sm:grid-cols-3 dark:border-neutral-800 dark:bg-neutral-800"
       >
         {exhibits.map((exhibit) => (
           <Link
